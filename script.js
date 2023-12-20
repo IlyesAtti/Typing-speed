@@ -12,7 +12,7 @@ const inputText = document.getElementById("text");
 const textToDisplay = document.getElementById("displayStory");
 const randomStory = getStory();
 
-let count = 30;
+let count = 15;
 
 window.onload = function() {
     randomStory.split('').forEach(character => {
@@ -60,9 +60,10 @@ function start_cuntdown() {
         document.getElementById("count").innerHTML =  count;
     } else {
         document.getElementById('text').readOnly = true;
-        countCharactersByColor();
-        countWordsByColour();
         document.getElementById("count").style= "visibility: hidden";
+        countCharactersByColor();
+        clearInterval();
+        
     }
 }
 
@@ -82,45 +83,60 @@ function countCharactersByColor() {
     const test = textToDisplay.querySelectorAll('span');
     let validChar = 0;
     let invalidChar = 0;
-
+    let wordLength = 0;
+    let isWalid = 0;
+    let validWords = 0;
+    let invalidWords = 0; 
+    let totalWords = 0;
     test.forEach((characterSpan) => {
         if (characterSpan.classList.contains('valid')) {
+            if (characterSpan.innerText == " ") {
+                ++totalWords;
+            }
             ++validChar;
+            ++isWalid;
+            ++wordLength;
         } else if (characterSpan.classList.contains('invalid')) {
+            if (characterSpan.innerText == " ") {
+                ++totalWords;
+            }
             ++invalidChar;
+            ++wordLength;
+        }
+        if (characterSpan.innerText == " ") {
+            if (wordLength == isWalid && wordLength > 0) {
+                ++validWords;
+            } else if (wordLength != isWalid && wordLength > 0) {
+                ++invalidWords;
+            }
+            wordLength = 0;
+            isWalid = 0;
         }
     });
+    /*
+   ----------------------------------- result / characters ------------------
+
+
     let accuracyChar = (Number(validChar) * 100) / (Number(validChar) + Number(invalidChar));
     document.getElementById("charactersOnMin").innerText = "Characters / min : " + (Number(validChar) + Number(invalidChar));
     document.getElementById("misedCharacters").innerText = "Missed Characters: " + invalidChar;
     document.getElementById("correctCharacters"). innerText = "Correct characters: " + validChar;
     document.getElementById("accuracy").innerText = "Accuracy: " + (accuracyChar.toFixed(2)) + "%";
     document.getElementById("restart").style = "visibility: visible";
-}
-
-function countWordsByColour() {
-    const spans = Array.from(textToDisplay.querySelectorAll('span'));
-    const inputTextValue = inputText.value.trim();
-    const inputWords = inputTextValue.split(" ");
-    
-    let validWords = 0;
-    let invalidWords = 0;
-
-    inputWords.forEach((word, index) => {
-        const wordSpans = spans.slice(index * word.length, (index + 1) * word.length);
-        const isValidWord = wordSpans.every(span => !span.classList.contains('invalid'));
-
-        if (isValidWord) {
-            ++validWords;
-        } else {
-            ++invalidWords;
-        }
-    });
+    */
 
     let wordAccuracy = (Number(validWords) * 100) / (Number(validWords) + Number(invalidWords));
+    if ((wordAccuracy.toFixed(2)) < 50) {
+        document.getElementById("wordsAccuracy").style = "color: red;";
+    } else if (((wordAccuracy.toFixed(2)) < 75)) {
+        document.getElementById("wordsAccuracy").style = "color: yellow;";
+    } else {
+        document.getElementById("wordsAccuracy").style = "color: green;";
+    }
 
     document.getElementById("wordsOnMin").innerText = "Words / min : " + (Number(validWords) + Number(invalidWords));
     document.getElementById("misedWords").innerText = "Missed Words: " + invalidWords;
     document.getElementById("correctWords").innerText = "Correct Words: " + validWords;
     document.getElementById("wordsAccuracy").innerText = "Word Accuracy: " + (wordAccuracy.toFixed(2)) + "%";
+    document.getElementById("restart").style = "visibility: visible";
 }
