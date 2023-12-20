@@ -12,7 +12,7 @@ const inputText = document.getElementById("text");
 const textToDisplay = document.getElementById("displayStory");
 const randomStory = getStory();
 
-let count = 15;
+let count = 60;
 
 window.onload = function() {
     randomStory.split('').forEach(character => {
