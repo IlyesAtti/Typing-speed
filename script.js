@@ -14,6 +14,14 @@ const randomStory = getStory();
 
 let count = 60;
 
+function getStory() {
+    return eval("story" + getRandomNumber());
+}
+
+function getRandomNumber() {
+    return Math.ceil(Math.random() * 9);
+}
+
 window.onload = function() {
     randomStory.split('').forEach(character => {
         const characterSpan = document.createElement('span');
@@ -49,10 +57,6 @@ function start() {
     setInterval(start_cuntdown, 1000);
 }
 
-function getRandomNumber() {
-    return Math.ceil(Math.random() * 9);
-}
-
 function start_cuntdown() {
     if (count > 0) {
         --count;
@@ -66,9 +70,6 @@ function start_cuntdown() {
 
 function changeStory() {
     location.reload();
-}
-function getStory() {
-    return eval("story" + getRandomNumber());
 }
 
 function blankInput() {
