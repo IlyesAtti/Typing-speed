@@ -46,7 +46,6 @@ function start() {
     document.getElementById('next').style = "visibility: hidden";
     document.getElementById('start').style = "visibility: hidden";
     blankInput();
-    position = 0;
     setInterval(start_cuntdown, 1000);
 }
 
@@ -62,8 +61,6 @@ function start_cuntdown() {
         document.getElementById('text').readOnly = true;
         document.getElementById("count").style= "visibility: hidden";
         countCharactersByColor();
-        clearInterval();
-        
     }
 }
 
@@ -80,7 +77,7 @@ function blankInput() {
 }
 
 function countCharactersByColor() {
-    const test = textToDisplay.querySelectorAll('span');
+    const displayed = textToDisplay.querySelectorAll('span');
     let validChar = 0;
     let invalidChar = 0;
     let wordLength = 0;
@@ -88,7 +85,7 @@ function countCharactersByColor() {
     let validWords = 0;
     let invalidWords = 0; 
     let totalWords = 0;
-    test.forEach((characterSpan) => {
+    displayed.forEach((characterSpan) => {
         if (characterSpan.classList.contains('valid')) {
             if (characterSpan.innerText == " ") {
                 ++totalWords;
