@@ -12,36 +12,30 @@
         <title>Typing speed</title>
         </head>
     <body>
-      <div class = "count-down" id = "count">60</div>
-      <div class = "container" >
-        <div class = "storyDisplay" id = "displayStory"></div>
-        <textarea class = "inputText" id = "text"></textarea>
+      <div class="count-down" id="count">60</div>
+      <div class="container" >
+        <div class="storyDisplay" id="displayStory"></div>
+        <textarea class="inputText" id="text"></textarea>
         <br>
-        <button id = "start" type = "button" class = "btn btn-success" onclick = "start()">Start</button>
-        <button id = "next" type = "button" class = "btn btn-warning" onclick = "changeStory()">I don't like this text</button>
+        <button id="start" type="button" class="btn btn-success" onclick="start()">Start</button>
+        <button id="next" type="button" class="btn btn-warning" onclick="changeStory()">I don't like this text</button>
         <br>
-        <button id = "restart" type = "button" class = "btn btn-danger" style = "visibility: hidden" onclick = "changeStory()">Restart</button>
+        <button id="restart" type="button" class="btn btn-danger" style="visibility: hidden" onclick="changeStory()">Restart</button>
       <br>
       <br>
       <div class="row">
-        <div class="column"><p id = "wordsOnMin" class = "paragraph"></p></div>
-        <div class="column"><p id = "misedWords" class = "invalid"></p></div>
-        <div class="column"><p id = "correctWords" class = "valid"></p></div>
+        <div class="column"><p id="wordsOnMin" class="paragraph"></p></div>
+        <div class="column"><p id="misedWords" class="invalid"></p></div>
+        <div class="column"><p id="correctWords" class="valid"></p></div>
       </div>
       <div class="row">
         <div class="column"></div>
-        <div class="column"><h3 id = "wordsAccuracy" class = "paragraph"></h3></div>
+        <div class="column"><h3 id="wordsAccuracy" class="paragraph"></h3></div>
         <div class="column"></div>
         </div>
-       <!--
-        <p id = "charactersOnMin" class = "paragraph"></p>
-        <p id = "misedCharacters" class = "invalid"></p> 
-        <p id = "correctCharacters" class = "valid"></p>
-        <p id = "accuracy" class="paragraph"></p>
-      -->
       </div>
-    <script src = "script.js"></script>
-    <style styl = "style.css"></style>
+    <script src="script.js"></script>
+    <style styl="style.css"></style>
 
     </body>
 </html>
